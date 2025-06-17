@@ -1,0 +1,1 @@
+# ProjectCard component will be handled via App.jsx
