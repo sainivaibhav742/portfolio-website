@@ -1,9 +1,8 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { motion } from "framer-motion"
-import { Mail, MapPin, Phone, Github, Linkedin, Twitter, Download, ExternalLink } from "lucide-react"
+import { Mail, MapPin, Phone, Github, Linkedin, Twitter, ExternalLink } from "lucide-react"
 import { portfolioData } from "@/data/portfolio"
 import Link from "next/link"
 
@@ -21,7 +20,7 @@ export function Contact() {
             className="flex flex-col gap-4 max-w-2xl mx-auto text-center"
           >
             <h2 className="text-3xl md:text-4xl font-bold font-display text-textPrimary">
-              Let's Connect
+              Let&apos;s Connect
             </h2>
             <p className="text-lg text-textSecondary leading-relaxed">
               Always open to discussing new projects, creative ideas, or opportunities.
@@ -177,7 +176,7 @@ export function Contact() {
               <Card className="bg-gradient-to-br from-cream to-beige/50 border-none shadow-md">
                 <CardContent className="p-8 md:p-10">
                   <div className="flex flex-col items-center text-center gap-4">
-                    <div className="text-4xl text-textPrimary/20">"</div>
+                    <div className="text-4xl text-textPrimary/20">&ldquo;</div>
                     <p className="text-lg text-textPrimary italic leading-relaxed">
                       {portfolioData.testimonials[0].quote}
                     </p>

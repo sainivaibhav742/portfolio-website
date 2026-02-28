@@ -17,7 +17,7 @@ export function Projects() {
               Featured Projects
             </h2>
             <p className="text-lg text-textSecondary leading-relaxed">
-              Here are some of the projects I've worked on. Each project is a unique challenge that I've solved with code.
+              Here are some of the projects I&apos;ve worked on. Each project is a unique challenge that I&apos;ve solved with code.
             </p>
           </div>
 

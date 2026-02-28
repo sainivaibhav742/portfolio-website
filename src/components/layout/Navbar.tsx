@@ -7,9 +7,11 @@ import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 
 const navItems = [
+    { name: "Home", href: "#hero" },
     { name: "About", href: "#about" },
     { name: "Skills", href: "#skills" },
     { name: "Projects", href: "#projects" },
+    { name: "Coding", href: "#coding-profiles" },
     { name: "Experience", href: "#experience" },
     { name: "Contact", href: "#contact" },
 ]
@@ -17,6 +19,7 @@ const navItems = [
 export function Navbar() {
     const [isScrolled, setIsScrolled] = React.useState(false)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
+    const [activeSection, setActiveSection] = React.useState("#hero")
 
     React.useEffect(() => {
         const handleScroll = () => {
@@ -24,6 +27,31 @@ export function Navbar() {
         }
         window.addEventListener("scroll", handleScroll)
         return () => window.removeEventListener("scroll", handleScroll)
+    }, [])
+
+    React.useEffect(() => {
+        const sections = navItems
+            .map((item) => document.querySelector(item.href))
+            .filter((section): section is Element => section !== null)
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const visibleSection = entries
+                    .filter((entry) => entry.isIntersecting)
+                    .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+
+                if (visibleSection?.target?.id) {
+                    setActiveSection(`#${visibleSection.target.id}`)
+                }
+            },
+            {
+                threshold: [0.3, 0.5, 0.7],
+                rootMargin: "-80px 0px -35% 0px",
+            }
+        )
+
+        sections.forEach((section) => observer.observe(section))
+        return () => observer.disconnect()
     }, [])
 
     const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -67,15 +95,24 @@ export function Navbar() {
                             key={item.name}
                             href={item.href}
                             onClick={(e) => scrollToSection(e, item.href)}
-                            className="text-sm font-medium text-textSecondary hover:text-textPrimary transition-colors relative group"
+                            aria-current={activeSection === item.href ? "page" : undefined}
+                            className={cn(
+                                "text-sm font-medium transition-colors relative group",
+                                activeSection === item.href ? "text-textPrimary" : "text-textSecondary hover:text-textPrimary"
+                            )}
                         >
                             {item.name}
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-textPrimary transition-all group-hover:w-full" />
+                            <span
+                                className={cn(
+                                    "absolute -bottom-1 left-0 h-0.5 bg-textPrimary transition-all",
+                                    activeSection === item.href ? "w-full" : "w-0 group-hover:w-full"
+                                )}
+                            />
                         </Link>
                     ))}
                     <Button variant="default" size="sm" asChild>
                         <Link href="#contact" onClick={(e) => scrollToSection(e, "#contact")}>
-                            Let's Talk
+                            Let&apos;s Talk
                         </Link>
                     </Button>
                 </nav>
@@ -84,6 +121,7 @@ export function Navbar() {
                 <button
                     className="md:hidden p-2 text-textPrimary"
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
                 >
                     {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
@@ -98,14 +136,17 @@ export function Navbar() {
                                 key={item.name}
                                 href={item.href}
                                 onClick={(e) => scrollToSection(e, item.href)}
-                                className="text-base font-medium text-textSecondary hover:text-textPrimary py-2 border-b border-dashed border-textPrimary/10 last:border-0"
+                                className={cn(
+                                    "text-base font-medium py-2 border-b border-dashed border-textPrimary/10 last:border-0",
+                                    activeSection === item.href ? "text-textPrimary" : "text-textSecondary hover:text-textPrimary"
+                                )}
                             >
                                 {item.name}
                             </Link>
                         ))}
                         <Button className="w-full mt-2" onClick={() => setIsMobileMenuOpen(false)} asChild>
                             <Link href="#contact" onClick={(e) => scrollToSection(e, "#contact")}>
-                                Let's Talk
+                                Let&apos;s Talk
                             </Link>
                         </Button>
                     </nav>

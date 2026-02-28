@@ -319,7 +319,7 @@ export function CodingProfiles() {
 }
 
 // Helper Components
-function StatCard({ icon, label, value, loading }: { icon: React.ReactNode, label: string, value: any, loading: boolean }) {
+function StatCard({ icon, label, value, loading }: { icon: React.ReactNode, label: string, value: string | number, loading: boolean }) {
     return (
         <div className={`flex flex-col gap-2 p-4 rounded-xl bg-gradient-to-br from-beige to-cream border border-textPrimary/5 hover:border-textPrimary/10 transition-colors ${loading ? 'animate-pulse' : ''}`}>
             <div className="flex items-center gap-1.5 text-textSecondary text-xs font-medium uppercase tracking-wider">

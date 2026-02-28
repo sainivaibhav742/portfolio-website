@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
-import { ArrowRight, Github, Code } from "lucide-react"
+import { ArrowRight, Github, Code, Mail } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { portfolioData } from "@/data/portfolio"
@@ -33,7 +33,7 @@ export function Hero() {
                         </div>
 
                         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-display tracking-tight text-textPrimary text-balance">
-                            Hi, I'm {portfolioData.personal.name.split(' ')[0]}
+                            Hi, I&apos;m {portfolioData.personal.name.split(' ')[0]}
                         </h1>
 
                         <p className="text-lg md:text-xl text-textSecondary max-w-xl text-balance leading-relaxed">
@@ -41,10 +41,16 @@ export function Hero() {
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center gap-4 mt-2">
-                            <Button size="lg" className="group min-w-[160px]" asChild>
+                            <Button size="lg" className="group min-w-[170px]" asChild>
                                 <Link href="#projects">
                                     View My Work
                                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                                </Link>
+                            </Button>
+                            <Button size="lg" variant="outline" className="min-w-[170px]" asChild>
+                                <Link href="#contact">
+                                    Contact Me
+                                    <Mail className="ml-2 h-4 w-4" />
                                 </Link>
                             </Button>
                         </div>

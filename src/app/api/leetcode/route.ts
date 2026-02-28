@@ -2,6 +2,11 @@ import { NextResponse } from 'next/server'
 
 export const dynamic = 'force-dynamic'
 
+interface SubmissionStat {
+  difficulty: 'All' | 'Easy' | 'Medium' | 'Hard'
+  count: number
+}
+
 interface LeetCodeStats {
   username: string
   totalSolved: number
@@ -62,13 +67,13 @@ export async function GET(request: Request) {
     }
 
     const user = data.data.matchedUser
-    const submissions = user.submitStats.acSubmissionNum
+    const submissions = user.submitStats.acSubmissionNum as SubmissionStat[]
 
     // Extract stats by difficulty
-    const allProblems = submissions.find((s: any) => s.difficulty === 'All')
-    const easy = submissions.find((s: any) => s.difficulty === 'Easy')
-    const medium = submissions.find((s: any) => s.difficulty === 'Medium')
-    const hard = submissions.find((s: any) => s.difficulty === 'Hard')
+    const allProblems = submissions.find((submission) => submission.difficulty === 'All')
+    const easy = submissions.find((submission) => submission.difficulty === 'Easy')
+    const medium = submissions.find((submission) => submission.difficulty === 'Medium')
+    const hard = submissions.find((submission) => submission.difficulty === 'Hard')
 
     const totalSolved = allProblems?.count || 0
     const ranking = user.profile?.ranking || 0

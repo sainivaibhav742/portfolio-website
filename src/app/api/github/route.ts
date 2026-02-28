@@ -2,6 +2,14 @@ import { NextResponse } from 'next/server'
 
 export const dynamic = 'force-dynamic'
 
+interface GitHubRepo {
+    stargazers_count: number
+}
+
+interface GitHubUser {
+    public_repos: number
+}
+
 interface GitHubStats {
     username: string
     totalRepos: number
@@ -31,7 +39,7 @@ export async function GET(request: Request) {
             throw new Error('Failed to fetch GitHub user data')
         }
 
-        const userData = await userResponse.json()
+        const userData = await userResponse.json() as GitHubUser
 
         // Fetch repositories
         const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`, {
@@ -45,8 +53,8 @@ export async function GET(request: Request) {
             throw new Error('Failed to fetch repositories')
         }
 
-        const repos = await reposResponse.json()
-        const totalStars = repos.reduce((acc: number, repo: any) => acc + repo.stargazers_count, 0)
+        const repos = await reposResponse.json() as GitHubRepo[]
+        const totalStars = repos.reduce((acc: number, repo) => acc + repo.stargazers_count, 0)
 
         // Generate contribution data for the last 52 weeks
         const contributions = generateContributionData()
@@ -83,7 +91,7 @@ function generateContributionData() {
         const isWeekend = dayOfWeek === 0 || dayOfWeek === 6
 
         // More activity on weekdays, less on weekends
-        let baseCount = isWeekend ? Math.random() * 3 : Math.random() * 10
+        const baseCount = isWeekend ? Math.random() * 3 : Math.random() * 10
 
         // Add some variation
         const count = Math.floor(baseCount)

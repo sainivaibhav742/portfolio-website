@@ -23,6 +23,12 @@ export default function RootLayout({
           "min-h-screen bg-background font-sans antialiased text-textPrimary selection:bg-textPrimary/10"
         )}
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-textPrimary focus:px-4 focus:py-2 focus:text-white"
+        >
+          Skip to main content
+        </a>
         {children}
       </body>
     </html>

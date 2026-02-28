@@ -14,7 +14,7 @@ export function Experience() {
                             Work Experience
                         </h2>
                         <p className="text-lg text-textSecondary leading-relaxed">
-                            My professional journey and the companies I've had the privilege to work with.
+                            My professional journey and the companies I&apos;ve had the privilege to work with.
                         </p>
                     </div>
 
