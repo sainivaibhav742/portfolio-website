@@ -6,7 +6,25 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        cream: "#FFF7EE",
+        beige: "#F8EFE6",
+        offwhite: "#F4EDE3",
+        skin: "#EDE4DA",
+        textPrimary: "#1A1A1A",
+        textSecondary: "#545454",
+      },
+      fontFamily: {
+        sans: ["Inter", "sans-serif"],
+        display: ["Geist", "Inter", "sans-serif"],
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+    },
   },
   plugins: [],
 }

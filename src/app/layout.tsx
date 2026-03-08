@@ -1,17 +1,14 @@
 import type { Metadata } from "next";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
 import "./globals.css";
-import Footer from "@/components/layout/Footer";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Vaibhav Saini - Full-Stack Developer & AI Specialist | Transforming Ideas Into Digital Excellence",
-  description: "Expert full-stack developer specializing in React, Next.js, and AI integration. Building scalable, high-performance web applications that drive business growth. 5+ years experience delivering exceptional digital solutions.",
-  keywords: "Vaibhav Saini, full-stack developer, AI specialist, React developer, Next.js expert, web development, AI integration, TypeScript, Node.js, enterprise solutions, SaaS development",
-  authors: [{ name: "Vaibhav Saini" }],
-  openGraph: {
-    title: "Vaibhav Saini - Full-Stack Developer & AI Specialist",
-    description: "Transforming ideas into digital excellence. Expert in React, Next.js, and AI integration with 5+ years of experience building scalable solutions.",
-    type: "website",
-  },
+  title: "Vaibhav Saini | Frontend Developer",
+  description: "Premium frontend developer portfolio showcasing modern web interfaces.",
 };
 
 export default function RootLayout({
@@ -21,11 +18,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="antialiased">
-        <main>
-          {children}
-        </main>
-        <Footer />
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased text-textPrimary selection:bg-textPrimary/10"
+        )}
+      >
+        {children}
       </body>
     </html>
   );

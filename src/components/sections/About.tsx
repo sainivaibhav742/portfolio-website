@@ -1,149 +1,110 @@
-'use client';
+"use client"
 
-import { motion } from 'framer-motion';
+import { portfolioData } from "@/data/portfolio"
+import { motion } from "framer-motion"
+import { CheckCircle2 } from "lucide-react"
 
-export default function About() {
-  const highlights = [
-    {
-      title: 'Innovation',
-      description: 'Pushing boundaries with cutting-edge technologies and creative solutions.',
-      icon: '🚀',
-    },
-    {
-      title: 'Collaboration',
-      description: 'Building strong partnerships and fostering team success.',
-      icon: '🤝',
-    },
-    {
-      title: 'Excellence',
-      description: 'Delivering high-quality work that exceeds expectations.',
-      icon: '⭐',
-    },
-  ];
-
-  const stats = [
-    { label: 'Years Experience', value: '5+' },
-    { label: 'Projects Completed', value: '50+' },
-    { label: 'Happy Clients', value: '30+' },
-    { label: 'Technologies', value: '20+' },
-  ];
-
+export function About() {
   return (
-    <section id="about" className="py-32">
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20"
-        >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-            About <span className="text-gradient">Me</span>
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Passionate about creating digital experiences that matter. From concept to deployment, I bring ideas to life with code and creativity.
-          </p>
-        </motion.div>
+    <section id="about" className="py-20 bg-white/50">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="flex flex-col gap-16">
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column - Bio */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="space-y-6"
-          >
-            <div className="glow-card">
-              <h3 className="text-2xl font-bold text-black mb-4">My Journey</h3>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                As a Co-Founder & CTO at SocialMoon, I lead technical innovation while building scalable solutions that drive business growth. My expertise spans full-stack development, AI integration, and cloud architecture.
-              </p>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                With a background in computer science and a passion for emerging technologies, I specialize in transforming complex problems into elegant, user-centric solutions. Whether it's crafting intuitive user interfaces or architecting robust backend systems, I thrive on challenges that push the boundaries of what's possible.
-              </p>
-              <p className="text-gray-600 leading-relaxed">
-                When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or mentoring the next generation of developers.
-              </p>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-4">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="glass p-4 rounded-xl text-center"
-                >
-                  <div className="text-2xl font-bold text-black mb-1">{stat.value}</div>
-                  <div className="text-sm text-gray-600">{stat.label}</div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Right Column - Highlights */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="space-y-6"
-          >
-            {highlights.map((highlight, index) => (
-              <motion.div
-                key={highlight.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="glow-card group cursor-pointer"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="text-4xl group-hover:scale-110 transition-transform">
-                    {highlight.icon}
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-bold text-black mb-2 group-hover:text-gradient transition-all">
-                      {highlight.title}
-                    </h4>
-                    <p className="text-gray-600 leading-relaxed">
-                      {highlight.description}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-
-            {/* Call to Action */}
+          {/* Header & Bio */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="glow-card text-center"
+              transition={{ duration: 0.5 }}
+              className="flex flex-col gap-6"
             >
-              <h4 className="text-xl font-bold text-black mb-4">Let's Work Together</h4>
-              <p className="text-gray-600 mb-6">
-                Ready to bring your next project to life? I'm always excited to take on new challenges and collaborate on innovative solutions.
+              <h2 className="text-3xl md:text-4xl font-bold font-display text-textPrimary">
+                {portfolioData.about.title}
+              </h2>
+              <p className="text-lg text-textSecondary leading-relaxed">
+                {portfolioData.about.bio}
               </p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="btn btn-primary"
-              >
-                Get In Touch
-              </motion.button>
+
+              <div className="grid grid-cols-3 gap-4 mt-4">
+                {portfolioData.about.stats.map((stat, index) => (
+                  <div key={index} className="flex flex-col">
+                    <span className="text-3xl md:text-4xl font-bold text-textPrimary font-display">
+                      {stat.value}
+                    </span>
+                    <span className="text-sm text-textSecondary mt-1">
+                      {stat.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </motion.div>
+
+            {/* Features / Philosophy */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+            >
+              {portfolioData.about.features.map((feature, index) => (
+                <div
+                  key={index}
+                  className="p-6 rounded-2xl bg-white border border-textPrimary/5 shadow-soft hover:shadow-lg transition-shadow duration-300"
+                >
+                  <div className="h-10 w-10 rounded-lg bg-beige flex items-center justify-center text-textPrimary mb-4">
+                    <feature.icon size={20} />
+                  </div>
+                  <h3 className="text-lg font-bold text-textPrimary mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm text-textSecondary leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Additional "My Approach" Section for Depth */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="rounded-3xl bg-gradient-to-br from-skin to-beige p-8 md:p-12 overflow-hidden relative border border-textPrimary/5"
+          >
+            <div className="absolute top-0 right-0 w-64 h-64 bg-offwhite/30 rounded-full -mr-16 -mt-16 blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-cream/30 rounded-full -ml-16 -mb-16 blur-3xl" />
+
+            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+              <div>
+                <h3 className="text-2xl md:text-3xl font-bold font-display mb-4 text-textPrimary">
+                  My Development Philosophy
+                </h3>
+                <p className="text-textSecondary leading-relaxed">
+                  I believe that great software is born at the intersection of clean code, user-centric design, and performance optimization. Every line of code I write is aimed at creating a seamless experience for the end user.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3">
+                {[
+                  "User-First Approach",
+                  "Pixel-Perfect Implementation",
+                  "Accessible by Default",
+                  "Performance Obsessed"
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <CheckCircle2 className="text-textPrimary shrink-0" size={20} />
+                    <span className="font-medium text-textPrimary">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </motion.div>
+
         </div>
       </div>
     </section>
-  );
+  )
 }

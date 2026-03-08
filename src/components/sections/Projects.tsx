@@ -1,104 +1,81 @@
-'use client';
+"use client"
 
-import { motion } from 'framer-motion';
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { motion } from "framer-motion"
+import { ExternalLink, Github } from "lucide-react"
+import Link from "next/link"
+import { portfolioData } from "@/data/portfolio"
 
-export default function Projects() {
-  const projects = [
-    {
-      title: 'Enterprise SaaS Platform',
-      description: 'Scalable B2B platform serving 10,000+ users with real-time collaboration, advanced analytics, and seamless integrations. Built for performance and reliability.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
-      tags: ['Next.js', 'TypeScript', 'PostgreSQL', 'AWS'],
-      gradient: 'from-[#667EEA] to-[#764BA2]',
-    },
-    {
-      title: 'AI-Powered E-Commerce',
-      description: 'Next-gen shopping experience with AI product recommendations, smart search, and personalized user journeys. Increased conversion rates by 45%.',
-      image: 'https://images.unsplash.com/photo-1661956602116-aa6865609028?w=800&q=80',
-      tags: ['React', 'Node.js', 'OpenAI', 'Stripe'],
-      gradient: 'from-[#F093FB] to-[#F5576C]',
-    },
-    {
-      title: 'Real-Time Analytics Dashboard',
-      description: 'Comprehensive data visualization platform processing millions of events daily. Interactive charts, custom reports, and predictive insights.',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
-      tags: ['React', 'D3.js', 'Python', 'Redis'],
-      gradient: 'from-[#4FACFE] to-[#00F2FE]',
-    },
-    {
-      title: 'Intelligent Automation Suite',
-      description: 'AI-driven workflow automation reducing manual tasks by 80%. Natural language processing, smart routing, and seamless third-party integrations.',
-      image: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&q=80',
-      tags: ['GPT-4', 'Node.js', 'WebSocket', 'Docker'],
-      gradient: 'from-[#FA709A] to-[#FEE140]',
-    },
-  ];
-
+export function Projects() {
   return (
-    <section id="projects" className="py-32">
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20"
-        >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-            Portfolio <span className="text-gradient">Highlights</span>
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Transforming businesses through innovative solutions. Each project represents a unique challenge solved with cutting-edge technology and creative problem-solving.
-          </p>
-        </motion.div>
+    <section id="projects" className="py-20 bg-white/50">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="flex flex-col gap-12">
+          <div className="flex flex-col gap-4 max-w-2xl">
+            <h2 className="text-3xl md:text-4xl font-bold font-display text-textPrimary">
+              Featured Projects
+            </h2>
+            <p className="text-lg text-textSecondary leading-relaxed">
+              Here are some of the projects I've worked on. Each project is a unique challenge that I've solved with code.
+            </p>
+          </div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group glow-card overflow-hidden cursor-pointer"
-            >
-              {/* Project Image */}
-              <div className="relative h-64 overflow-hidden rounded-2xl mb-6">
-                <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-40 mix-blend-multiply`}></div>
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-              </div>
-
-              {/* Project Info */}
-              <div>
-                <h3 className="text-2xl font-bold text-black mb-3 group-hover:text-gradient transition-all">
-                  {project.title}
-                </h3>
-                <p className="text-gray-600 mb-4 leading-relaxed">
-                  {project.description}
-                </p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 text-sm rounded-full glass text-black/80"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {portfolioData.projects.map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Card className="h-full flex flex-col overflow-hidden group hover:shadow-lg transition-all duration-300 border-textPrimary/5">
+                  <div className="h-48 bg-beige w-full relative overflow-hidden">
+                    <div className="absolute inset-0 bg-textPrimary/5 group-hover:bg-textPrimary/10 transition-colors" />
+                    {/* Placeholder for project image */}
+                    <div className="absolute inset-0 flex items-center justify-center text-textSecondary/20 font-display text-4xl font-bold">
+                      {project.title[0]}
+                    </div>
+                  </div>
+                  <CardHeader>
+                    <CardTitle className="text-xl">{project.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex-grow">
+                    <p className="text-textSecondary text-sm leading-relaxed mb-4">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-xs font-medium bg-cream text-textPrimary px-2 py-1 rounded-md border border-textPrimary/5"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </CardContent>
+                  <CardFooter className="gap-2 pt-0">
+                    <Button variant="outline" size="sm" className="w-full" asChild>
+                      <Link href={project.demoLink} target="_blank">
+                        <ExternalLink className="mr-2 h-4 w-4" />
+                        Live Demo
+                      </Link>
+                    </Button>
+                    <Button variant="ghost" size="sm" className="w-full" asChild>
+                      <Link href={project.codeLink} target="_blank">
+                        <Github className="mr-2 h-4 w-4" />
+                        Code
+                      </Link>
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
-  );
+  )
 }

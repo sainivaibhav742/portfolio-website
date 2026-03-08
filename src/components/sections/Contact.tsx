@@ -1,164 +1,202 @@
-'use client';
+"use client"
 
-import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { motion } from "framer-motion"
+import { Mail, MapPin, Phone, Github, Linkedin, Twitter, Download, ExternalLink } from "lucide-react"
+import { portfolioData } from "@/data/portfolio"
+import Link from "next/link"
 
-export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission
-  };
-
-  const socialLinks = [
-    { name: 'GitHub', url: '#', icon: '💻', color: '#333' },
-    { name: 'LinkedIn', url: '#', icon: '💼', color: '#0077B5' },
-    { name: 'Twitter', url: '#', icon: '🐦', color: '#1DA1F2' },
-    { name: 'Email', url: 'mailto:vaibhav@example.com', icon: '✉️', color: '#EA4335' },
-  ];
-
+export function Contact() {
   return (
-    <section id="contact" className="py-32">
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20"
-        >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-            Let's Build Something <span className="text-gradient">Amazing</span>
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Ready to bring your vision to life? Whether it's a new project, collaboration opportunity, or just a chat about technology—I'd love to hear from you.
-          </p>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
+    <section id="contact" className="py-20 bg-gradient-to-b from-white to-cream/50">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="flex flex-col gap-16">
+          {/* Header */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="glow-card"
+            transition={{ duration: 0.5 }}
+            className="flex flex-col gap-4 max-w-2xl mx-auto text-center"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-black font-medium mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 bg-black/5 border border-black/10 rounded-xl text-black placeholder-gray-500 focus:outline-none focus:border-[#667EEA] transition-colors"
-                  placeholder="Your name"
-                  required
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-black font-medium mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 bg-black/5 border border-black/10 rounded-xl text-black placeholder-gray-500 focus:outline-none focus:border-[#667EEA] transition-colors"
-                  placeholder="your.email@example.com"
-                  required
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-black font-medium mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  rows={6}
-                  className="w-full px-4 py-3 bg-black/5 border border-black/10 rounded-xl text-black placeholder-gray-500 focus:outline-none focus:border-[#667EEA] transition-colors resize-none"
-                  placeholder="Tell me about your project..."
-                  required
-                />
-              </div>
-
-              <button type="submit" className="w-full btn btn-primary">
-                Send Message
-              </button>
-            </form>
+            <h2 className="text-3xl md:text-4xl font-bold font-display text-textPrimary">
+              Let's Connect
+            </h2>
+            <p className="text-lg text-textSecondary leading-relaxed">
+              Always open to discussing new projects, creative ideas, or opportunities.
+            </p>
           </motion.div>
 
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="space-y-8"
-          >
-            <div className="glow-card">
-              <h3 className="text-2xl font-bold text-black mb-6">Start Your Project Today</h3>
-              <p className="text-gray-600 leading-relaxed mb-8">
-                Looking for a dedicated developer to bring your ideas to life? I'm available for freelance projects, consulting, and full-time opportunities. Let's create something extraordinary together!
-              </p>
-
-              {/* Social Links */}
-              <div className="grid grid-cols-2 gap-4">
-                {socialLinks.map((social, index) => (
-                  <motion.a
-                    key={social.name}
-                    href={social.url}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                    whileHover={{ scale: 1.05, y: -5 }}
-                    className="glass p-4 rounded-xl flex items-center gap-3 group"
+          {/* Contact Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {/* Email Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <Card className="group hover:shadow-xl transition-all duration-300 border-textPrimary/10 h-full">
+                <CardContent className="p-6 flex flex-col items-center text-center gap-4">
+                  <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-beige to-cream flex items-center justify-center text-textPrimary group-hover:scale-110 transition-transform">
+                    <Mail size={28} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-textPrimary mb-1 text-sm uppercase tracking-wide">Email</h3>
+                    <a
+                      href={`mailto:${portfolioData.personal.email}`}
+                      className="text-textSecondary hover:text-textPrimary transition-colors text-sm break-all"
+                    >
+                      {portfolioData.personal.email}
+                    </a>
+                  </div>
+                  <a
+                    href={`mailto:${portfolioData.personal.email}`}
+                    className="mt-auto text-sm text-textSecondary hover:text-textPrimary flex items-center gap-1 transition-colors"
                   >
-                    <span className="text-3xl">{social.icon}</span>
-                    <span className="text-black font-medium group-hover:text-gradient transition-all">
-                      {social.name}
-                    </span>
-                  </motion.a>
-                ))}
-              </div>
-            </div>
+                    Send Email
+                    <ExternalLink size={14} />
+                  </a>
+                </CardContent>
+              </Card>
+            </motion.div>
 
-            {/* Quick Info */}
-            <div className="glow-card space-y-4">
-              <div className="flex items-start gap-3">
-                <span className="text-2xl">📍</span>
-                <div>
-                  <h4 className="text-black font-medium">Location</h4>
-                  <p className="text-gray-600">Available Worldwide</p>
+            {/* Phone Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <Card className="group hover:shadow-xl transition-all duration-300 border-textPrimary/10 h-full">
+                <CardContent className="p-6 flex flex-col items-center text-center gap-4">
+                  <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-beige to-cream flex items-center justify-center text-textPrimary group-hover:scale-110 transition-transform">
+                    <Phone size={28} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-textPrimary mb-1 text-sm uppercase tracking-wide">Phone</h3>
+                    <a
+                      href={`tel:${portfolioData.personal.phone}`}
+                      className="text-textSecondary hover:text-textPrimary transition-colors"
+                    >
+                      {portfolioData.personal.phone}
+                    </a>
+                  </div>
+                  <a
+                    href={`tel:${portfolioData.personal.phone}`}
+                    className="mt-auto text-sm text-textSecondary hover:text-textPrimary flex items-center gap-1 transition-colors"
+                  >
+                    Call Now
+                    <ExternalLink size={14} />
+                  </a>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Location Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <Card className="group hover:shadow-xl transition-all duration-300 border-textPrimary/10 h-full">
+                <CardContent className="p-6 flex flex-col items-center text-center gap-4">
+                  <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-beige to-cream flex items-center justify-center text-textPrimary group-hover:scale-110 transition-transform">
+                    <MapPin size={28} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-textPrimary mb-1 text-sm uppercase tracking-wide">Location</h3>
+                    <p className="text-textSecondary">
+                      {portfolioData.personal.location}
+                    </p>
+                  </div>
+                  <div className="mt-auto flex items-center gap-1 text-sm">
+                    <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
+                    <span className="text-green-600 font-medium">Available</span>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+
+          {/* Social Links & Actions */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="max-w-3xl mx-auto w-full"
+          >
+            <Card className="border-textPrimary/10">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-bold text-textPrimary mb-6 text-center">Connect on Social Media</h3>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                  <Link
+                    href={portfolioData.personal.social.github}
+                    target="_blank"
+                    className="group flex items-center justify-center gap-3 p-4 rounded-xl bg-gradient-to-r from-gray-800 to-gray-900 text-white hover:shadow-lg transition-all duration-300"
+                  >
+                    <Github size={22} />
+                    <span className="font-semibold">GitHub</span>
+                  </Link>
+
+                  <Link
+                    href={portfolioData.personal.social.linkedin}
+                    target="_blank"
+                    className="group flex items-center justify-center gap-3 p-4 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:shadow-lg transition-all duration-300"
+                  >
+                    <Linkedin size={22} />
+                    <span className="font-semibold">LinkedIn</span>
+                  </Link>
+
+                  <Link
+                    href={portfolioData.personal.social.twitter}
+                    target="_blank"
+                    className="group flex items-center justify-center gap-3 p-4 rounded-xl bg-gradient-to-r from-sky-500 to-sky-600 text-white hover:shadow-lg transition-all duration-300"
+                  >
+                    <Twitter size={22} />
+                    <span className="font-semibold">Twitter</span>
+                  </Link>
                 </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <span className="text-2xl">⏰</span>
-                <div>
-                  <h4 className="text-black font-medium">Response Time</h4>
-                  <p className="text-gray-600">Within 24 hours</p>
-                </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           </motion.div>
+
+          {/* Testimonial */}
+          {portfolioData.testimonials.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="max-w-3xl mx-auto"
+            >
+              <Card className="bg-gradient-to-br from-cream to-beige/50 border-none shadow-md">
+                <CardContent className="p-8 md:p-10">
+                  <div className="flex flex-col items-center text-center gap-4">
+                    <div className="text-4xl text-textPrimary/20">"</div>
+                    <p className="text-lg text-textPrimary italic leading-relaxed">
+                      {portfolioData.testimonials[0].quote}
+                    </p>
+                    <div className="flex items-center gap-3 mt-4">
+                      <div className="h-12 w-12 rounded-full bg-textPrimary/10 flex items-center justify-center text-textPrimary font-bold text-lg">
+                        {portfolioData.testimonials[0].author.charAt(0)}
+                      </div>
+                      <div className="text-left">
+                        <p className="font-bold text-textPrimary">{portfolioData.testimonials[0].author}</p>
+                        <p className="text-sm text-textSecondary">{portfolioData.testimonials[0].role}</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          )}
         </div>
       </div>
     </section>
-  );
+  )
 }
