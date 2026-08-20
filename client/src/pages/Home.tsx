@@ -21,12 +21,12 @@ import {
 } from "lucide-react";
 
 const assets = {
-  mark: "/manus-storage/socialmoon-mark_b0241802.png",
-  hero: "/manus-storage/socialmoon-hero-orbit_cc39a478.png",
-  socialmoon: "/manus-storage/socialmoon-case-study-aurora_a60108b5.png",
-  bpolytix: "/manus-storage/socialmoon-case-study-grid_44149b51.png",
-  openSource: "/manus-storage/socialmoon-case-study-lattice_b33eff17.png",
-  portrait: "/manus-storage/vaibhav-founder-portrait_16b916ae.jpg",
+  mark: "/socialmoon-mark.png",
+  hero: "/socialmoon-hero-orbit.png",
+  socialmoon: "/socialmoon-case-study-aurora.png",
+  bpolytix: "/socialmoon-case-study-grid.png",
+  openSource: "/socialmoon-case-study-lattice.png",
+  portrait: "/vaibhav-founder-portrait.jpg",
 };
 
 const companies = [
