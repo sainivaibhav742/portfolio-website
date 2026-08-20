@@ -27,7 +27,7 @@ export default function Home() {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
+    <section className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden bg-white">
       {/* Radial Gradient Background */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#667EEA]/20 via-white to-white"></div>
 

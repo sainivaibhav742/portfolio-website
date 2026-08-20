@@ -1,57 +1,69 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Calendar } from "lucide-react"
+import { ArrowUpRight, Calendar } from "lucide-react"
+import Link from "next/link"
 import { portfolioData } from "@/data/portfolio"
 
 export function Experience() {
-    return (
-        <section id="experience" className="py-20">
-            <div className="container mx-auto px-4 md:px-6">
-                <div className="flex flex-col gap-12">
-                    <div className="flex flex-col gap-4 max-w-2xl">
-                        <h2 className="text-3xl md:text-4xl font-bold font-display text-textPrimary">
-                            Work Experience
-                        </h2>
-                        <p className="text-lg text-textSecondary leading-relaxed">
-                            My professional journey and the companies I've had the privilege to work with.
-                        </p>
+  return (
+    <section id="roles" className="py-24">
+      <div className="section-shell">
+        <div className="flex flex-col gap-12">
+          <div className="max-w-3xl">
+            <span className="eyebrow">Roles</span>
+            <h2 className="mt-4 font-display text-3xl font-black text-textPrimary text-balance md:text-5xl">
+              Operator roles that compound into the next company.
+            </h2>
+            <p className="mt-5 text-lg leading-8 text-textSecondary">
+              This is not a job-history wall. It is the active operating context behind the founder platform: building, leading, advising, and turning technical ideas into real systems.
+            </p>
+          </div>
+
+          <div className="relative ml-4 space-y-6 border-l border-textPrimary/15 md:ml-6">
+            {portfolioData.experience.map((exp, index) => (
+              <motion.div
+                key={`${exp.company}-${exp.role}`}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+                className="relative pl-8 md:pl-12"
+              >
+                <div className="absolute -left-[7px] top-6 h-3.5 w-3.5 rounded-full bg-accent ring-4 ring-accentSoft" />
+
+                <div className="surface-shell">
+                  <div className="surface-core p-6">
+                  <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                    <div>
+                      <h3 className="font-display text-2xl font-black text-textPrimary">{exp.role}</h3>
+                      <div className="mt-1 flex flex-wrap items-center gap-2 text-lg font-semibold text-textPrimary/80">
+                        <span>{exp.company}</span>
+                        {exp.url && (
+                          <Link href={exp.url} target="_blank" className="inline-flex items-center gap-1 text-sm text-accent hover:text-textPrimary">
+                            Visit
+                            <ArrowUpRight size={14} />
+                          </Link>
+                        )}
+                      </div>
                     </div>
 
-                    <div className="relative border-l border-textPrimary/10 ml-4 md:ml-6 space-y-12">
-                        {portfolioData.experience.map((exp, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="relative pl-8 md:pl-12"
-                            >
-                                {/* Timeline Dot */}
-                                <div className="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full bg-textPrimary ring-4 ring-beige" />
-
-                                <div className="flex flex-col gap-2">
-                                    <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
-                                        <h3 className="text-xl font-bold text-textPrimary">{exp.role}</h3>
-                                        <span className="hidden sm:block text-textSecondary">•</span>
-                                        <span className="text-lg font-medium text-textPrimary/80">{exp.company}</span>
-                                    </div>
-
-                                    <div className="flex items-center gap-2 text-sm text-textSecondary">
-                                        <Calendar size={14} />
-                                        <span>{exp.period}</span>
-                                    </div>
-
-                                    <p className="mt-2 text-textSecondary leading-relaxed max-w-2xl">
-                                        {exp.description}
-                                    </p>
-                                </div>
-                            </motion.div>
-                        ))}
+                    <div className="inline-flex items-center gap-2 rounded-full border border-textPrimary/10 bg-cream px-3 py-1 text-sm font-semibold text-textSecondary">
+                      <Calendar size={14} />
+                      <span>{exp.period}</span>
                     </div>
+                  </div>
+
+                  <p className="mt-5 max-w-3xl text-textSecondary leading-relaxed">
+                    {exp.description}
+                  </p>
+                  </div>
                 </div>
-            </div>
-        </section>
-    )
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
 }

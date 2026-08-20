@@ -2,6 +2,8 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { portfolioData } from '@/data/portfolio';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -59,19 +61,21 @@ export default function Header() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <div className="relative w-12 h-12 rounded-2xl overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#667EEA] to-[#764BA2] opacity-80 group-hover:opacity-100 transition-opacity"></div>
-              <img
-                src="/vaibhav.jpg"
-                alt="VS"
-                className="w-full h-full object-cover relative z-10 mix-blend-overlay"
+            <div className="relative h-12 w-12 overflow-hidden rounded-2xl border border-accent/35 bg-accent/10">
+              <Image
+                src={portfolioData.personal.avatarImage}
+                alt={`${portfolioData.personal.name} avatar`}
+                fill
+                className="object-cover"
+                sizes="48px"
+                priority
               />
             </div>
             <div className="flex flex-col">
               <span className="font-bold text-black text-lg group-hover:text-gradient transition-all">
-                Vaibhav Saini
+                {portfolioData.personal.name}
               </span>
-              <span className="text-xs text-gray-600">Creative Developer</span>
+              <span className="text-xs text-gray-600">{portfolioData.personal.title}</span>
             </div>
           </motion.div>
 

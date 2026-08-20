@@ -1,38 +1,34 @@
 import Link from "next/link"
 import { Github, Linkedin, Mail, Twitter } from "lucide-react"
+import { portfolioData } from "@/data/portfolio"
+import { BrandMark } from "@/components/layout/BrandMark"
 
 export function Footer() {
   return (
-    <footer className="bg-white border-t border-textPrimary/5 py-12 mt-20">
-      <div className="container mx-auto px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="flex flex-col items-center md:items-start gap-2">
-          <span className="text-xl font-bold font-display text-textPrimary">Vaibhav.</span>
-          <p className="text-sm text-textSecondary">
-            © {new Date().getFullYear()} Vaibhav Saini. All rights reserved.
-          </p>
+    <footer className="border-t border-white/[0.08] py-10">
+      <div className="section-shell flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-4">
+          <BrandMark subtitle="Building in public" />
+          <p className="text-sm font-semibold text-ink">Building in public since 2026.</p>
+          <p className="mt-2 text-sm text-muted">Made with curiosity and lots of coffee.</p>
         </div>
-
-        <div className="flex items-center gap-6">
-          <Link href="https://github.com" target="_blank" className="text-textSecondary hover:text-textPrimary transition-colors">
-            <Github size={20} />
+        <div className="flex items-center gap-3">
+          <Link href={portfolioData.personal.social.github} target="_blank" className="grid h-10 w-10 place-items-center rounded-lg border border-white/10 text-muted transition hover:border-accent/40 hover:text-ink">
+            <Github className="h-4 w-4" />
             <span className="sr-only">GitHub</span>
           </Link>
-          <Link href="https://linkedin.com" target="_blank" className="text-textSecondary hover:text-textPrimary transition-colors">
-            <Linkedin size={20} />
+          <Link href={portfolioData.personal.social.linkedin} target="_blank" className="grid h-10 w-10 place-items-center rounded-lg border border-white/10 text-muted transition hover:border-accent/40 hover:text-ink">
+            <Linkedin className="h-4 w-4" />
             <span className="sr-only">LinkedIn</span>
           </Link>
-          <Link href="https://twitter.com" target="_blank" className="text-textSecondary hover:text-textPrimary transition-colors">
-            <Twitter size={20} />
-            <span className="sr-only">Twitter</span>
+          <Link href={portfolioData.personal.social.twitter} target="_blank" className="grid h-10 w-10 place-items-center rounded-lg border border-white/10 text-muted transition hover:border-accent/40 hover:text-ink">
+            <Twitter className="h-4 w-4" />
+            <span className="sr-only">X</span>
           </Link>
-          <Link href="mailto:hello@example.com" className="text-textSecondary hover:text-textPrimary transition-colors">
-            <Mail size={20} />
+          <Link href={`mailto:${portfolioData.personal.email}`} className="grid h-10 w-10 place-items-center rounded-lg border border-white/10 text-muted transition hover:border-accent/40 hover:text-ink">
+            <Mail className="h-4 w-4" />
             <span className="sr-only">Email</span>
           </Link>
-        </div>
-
-        <div className="text-sm text-textSecondary">
-          Crafted with <span className="text-red-400">❤️</span> using React
         </div>
       </div>
     </footer>

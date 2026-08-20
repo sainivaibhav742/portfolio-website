@@ -3,199 +3,93 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { motion } from "framer-motion"
-import { Mail, MapPin, Phone, Github, Linkedin, Twitter, Download, ExternalLink } from "lucide-react"
-import { portfolioData } from "@/data/portfolio"
+import { ArrowRight, Github, Linkedin, Mail, MessageCircle, Twitter } from "lucide-react"
 import Link from "next/link"
+import { portfolioData } from "@/data/portfolio"
 
 export function Contact() {
   return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-white to-cream/50">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="flex flex-col gap-16">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="flex flex-col gap-4 max-w-2xl mx-auto text-center"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold font-display text-textPrimary">
-              Let's Connect
-            </h2>
-            <p className="text-lg text-textSecondary leading-relaxed">
-              Always open to discussing new projects, creative ideas, or opportunities.
-            </p>
-          </motion.div>
+    <section id="contact" className="py-24">
+      <div className="section-shell">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="overflow-hidden rounded-2xl border border-textPrimary/10 bg-ink shadow-soft"
+        >
+          <div className="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="p-8 md:p-12">
+              <span className="eyebrow text-accentSoft">Connect</span>
+              <h2 className="mt-4 max-w-3xl font-display text-4xl font-black text-white text-balance md:text-6xl">
+                Are you building something?
+              </h2>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-white/75">
+                If you are a founder, client, partner, or investor thinking through a serious product, I am open to focused conversations about what should be built and how to move it into the world.
+              </p>
 
-          {/* Contact Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {/* Email Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              <Card className="group hover:shadow-xl transition-all duration-300 border-textPrimary/10 h-full">
-                <CardContent className="p-6 flex flex-col items-center text-center gap-4">
-                  <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-beige to-cream flex items-center justify-center text-textPrimary group-hover:scale-110 transition-transform">
-                    <Mail size={28} />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-textPrimary mb-1 text-sm uppercase tracking-wide">Email</h3>
-                    <a
-                      href={`mailto:${portfolioData.personal.email}`}
-                      className="text-textSecondary hover:text-textPrimary transition-colors text-sm break-all"
-                    >
-                      {portfolioData.personal.email}
-                    </a>
-                  </div>
-                  <a
-                    href={`mailto:${portfolioData.personal.email}`}
-                    className="mt-auto text-sm text-textSecondary hover:text-textPrimary flex items-center gap-1 transition-colors"
-                  >
-                    Send Email
-                    <ExternalLink size={14} />
-                  </a>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* Phone Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <Card className="group hover:shadow-xl transition-all duration-300 border-textPrimary/10 h-full">
-                <CardContent className="p-6 flex flex-col items-center text-center gap-4">
-                  <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-beige to-cream flex items-center justify-center text-textPrimary group-hover:scale-110 transition-transform">
-                    <Phone size={28} />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-textPrimary mb-1 text-sm uppercase tracking-wide">Phone</h3>
-                    <a
-                      href={`tel:${portfolioData.personal.phone}`}
-                      className="text-textSecondary hover:text-textPrimary transition-colors"
-                    >
-                      {portfolioData.personal.phone}
-                    </a>
-                  </div>
-                  <a
-                    href={`tel:${portfolioData.personal.phone}`}
-                    className="mt-auto text-sm text-textSecondary hover:text-textPrimary flex items-center gap-1 transition-colors"
-                  >
-                    Call Now
-                    <ExternalLink size={14} />
-                  </a>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* Location Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <Card className="group hover:shadow-xl transition-all duration-300 border-textPrimary/10 h-full">
-                <CardContent className="p-6 flex flex-col items-center text-center gap-4">
-                  <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-beige to-cream flex items-center justify-center text-textPrimary group-hover:scale-110 transition-transform">
-                    <MapPin size={28} />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-textPrimary mb-1 text-sm uppercase tracking-wide">Location</h3>
-                    <p className="text-textSecondary">
-                      {portfolioData.personal.location}
-                    </p>
-                  </div>
-                  <div className="mt-auto flex items-center gap-1 text-sm">
-                    <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
-                    <span className="text-green-600 font-medium">Available</span>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
-
-          {/* Social Links & Actions */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="max-w-3xl mx-auto w-full"
-          >
-            <Card className="border-textPrimary/10">
-              <CardContent className="p-8">
-                <h3 className="text-xl font-bold text-textPrimary mb-6 text-center">Connect on Social Media</h3>
-
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-                  <Link
-                    href={portfolioData.personal.social.github}
-                    target="_blank"
-                    className="group flex items-center justify-center gap-3 p-4 rounded-xl bg-gradient-to-r from-gray-800 to-gray-900 text-white hover:shadow-lg transition-all duration-300"
-                  >
-                    <Github size={22} />
-                    <span className="font-semibold">GitHub</span>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Button size="lg" className="border-accent bg-accent text-textPrimary hover:bg-accent/90" asChild>
+                  <Link href={`mailto:${portfolioData.personal.email}?subject=Building something with Vaibhav`}>
+                    <Mail className="mr-2 h-4 w-4" />
+                    Email Vaibhav
                   </Link>
-
-                  <Link
-                    href={portfolioData.personal.social.linkedin}
-                    target="_blank"
-                    className="group flex items-center justify-center gap-3 p-4 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:shadow-lg transition-all duration-300"
-                  >
-                    <Linkedin size={22} />
-                    <span className="font-semibold">LinkedIn</span>
+                </Button>
+                <Button size="lg" variant="cream" asChild>
+                  <Link href={portfolioData.personal.social.linkedin} target="_blank">
+                    <MessageCircle className="mr-2 h-4 w-4" />
+                    Investor / Partner Conversation
                   </Link>
+                </Button>
+              </div>
+            </div>
 
-                  <Link
-                    href={portfolioData.personal.social.twitter}
-                    target="_blank"
-                    className="group flex items-center justify-center gap-3 p-4 rounded-xl bg-gradient-to-r from-sky-500 to-sky-600 text-white hover:shadow-lg transition-all duration-300"
-                  >
-                    <Twitter size={22} />
-                    <span className="font-semibold">Twitter</span>
-                  </Link>
+            <div className="border-t border-white/10 bg-white/[0.04] p-8 md:p-12 lg:border-l lg:border-t-0">
+              <div className="flex flex-col gap-6">
+                <div>
+                  <p className="text-sm font-bold uppercase tracking-wide text-accentSoft">Good reasons to reach out</p>
+                  <div className="mt-4 flex flex-col gap-3">
+                    {portfolioData.contactIntents.map((intent) => (
+                      <div key={intent} className="flex gap-3 rounded-xl border border-white/10 bg-white/5 p-4 text-sm leading-6 text-white/80">
+                        <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-accent" />
+                        <span>{intent}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </CardContent>
-            </Card>
-          </motion.div>
 
-          {/* Testimonial */}
-          {portfolioData.testimonials.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="max-w-3xl mx-auto"
-            >
-              <Card className="bg-gradient-to-br from-cream to-beige/50 border-none shadow-md">
-                <CardContent className="p-8 md:p-10">
-                  <div className="flex flex-col items-center text-center gap-4">
-                    <div className="text-4xl text-textPrimary/20">"</div>
-                    <p className="text-lg text-textPrimary italic leading-relaxed">
-                      {portfolioData.testimonials[0].quote}
-                    </p>
-                    <div className="flex items-center gap-3 mt-4">
-                      <div className="h-12 w-12 rounded-full bg-textPrimary/10 flex items-center justify-center text-textPrimary font-bold text-lg">
-                        {portfolioData.testimonials[0].author.charAt(0)}
-                      </div>
-                      <div className="text-left">
-                        <p className="font-bold text-textPrimary">{portfolioData.testimonials[0].author}</p>
-                        <p className="text-sm text-textSecondary">{portfolioData.testimonials[0].role}</p>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          )}
-        </div>
+                <Card className="border-white/10 bg-white/8 text-white">
+                  <CardContent className="rounded-xl border border-white/10 bg-white/[0.04] p-5">
+                    <p className="text-sm text-white/60">Primary identity</p>
+                    <p className="mt-2 font-display text-2xl font-black">{portfolioData.personal.name}</p>
+                    <p className="mt-1 text-accentSoft">@{portfolioData.personal.handle}</p>
+                    <Link href={`mailto:${portfolioData.personal.email}`} className="mt-4 block break-all text-sm text-white/75 hover:text-accent">
+                      {portfolioData.personal.email}
+                    </Link>
+                  </CardContent>
+                </Card>
+
+                <div className="grid grid-cols-3 gap-3">
+                  <Button variant="cream" size="icon" asChild>
+                    <Link href={portfolioData.personal.social.github} target="_blank" aria-label="GitHub">
+                      <Github className="h-5 w-5" />
+                    </Link>
+                  </Button>
+                  <Button variant="cream" size="icon" asChild>
+                    <Link href={portfolioData.personal.social.linkedin} target="_blank" aria-label="LinkedIn">
+                      <Linkedin className="h-5 w-5" />
+                    </Link>
+                  </Button>
+                  <Button variant="cream" size="icon" asChild>
+                    <Link href={portfolioData.personal.social.twitter} target="_blank" aria-label="Twitter">
+                      <Twitter className="h-5 w-5" />
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )

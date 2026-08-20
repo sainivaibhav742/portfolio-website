@@ -1,18 +1,18 @@
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from "next"
+import { portfolioData } from "@/data/portfolio"
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = "https://vaibhavsaini.in"
+  const pages = ["", "/projects", "/articles", "/build-logs", "/resources", "/about", "/contact"]
+  const projectPages = portfolioData.projects.map((project) => project.caseStudy)
+  const articlePages = portfolioData.articles.map((article) => article.href)
+
   return [
-    {
-      url: 'https://your-domain.com',
+    ...[...pages, ...projectPages, ...articlePages].map((page) => ({
+      url: `${baseUrl}${page}`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 1,
-    },
-    {
-      url: 'https://your-domain.com/blog/ai-powered-seo-strategies-2024',
-      lastModified: new Date('2024-11-15'),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
+      changeFrequency: "weekly" as const,
+      priority: page === "" ? 1 : 0.8,
+    })),
   ]
 }

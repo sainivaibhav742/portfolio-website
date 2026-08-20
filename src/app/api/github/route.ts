@@ -6,12 +6,21 @@ interface GitHubStats {
     username: string
     totalRepos: number
     totalStars: number
-    totalCommits: string
-    contributions: Array<{
-        date: string
-        count: number
-        level: number
+    repositories: Array<{
+        name: string
+        url: string
+        language: string | null
+        stars: number
+        updatedAt: string
     }>
+}
+
+interface GitHubRepository {
+    name: string
+    html_url: string
+    language: string | null
+    stargazers_count: number
+    updated_at: string
 }
 
 export async function GET(request: Request) {
@@ -45,18 +54,23 @@ export async function GET(request: Request) {
             throw new Error('Failed to fetch repositories')
         }
 
-        const repos = await reposResponse.json()
-        const totalStars = repos.reduce((acc: number, repo: any) => acc + repo.stargazers_count, 0)
-
-        // Generate contribution data for the last 52 weeks
-        const contributions = generateContributionData()
+        const repos = await reposResponse.json() as GitHubRepository[]
+        const totalStars = repos.reduce((acc: number, repo) => acc + repo.stargazers_count, 0)
 
         const stats: GitHubStats = {
             username,
             totalRepos: userData.public_repos,
             totalStars,
-            totalCommits: '1,500+', // GitHub API doesn't provide total commits easily, keep estimate
-            contributions
+            repositories: repos
+                .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())
+                .slice(0, 8)
+                .map((repo) => ({
+                    name: repo.name,
+                    url: repo.html_url,
+                    language: repo.language,
+                    stars: repo.stargazers_count,
+                    updatedAt: repo.updated_at,
+                })),
         }
 
         return NextResponse.json(stats)
@@ -69,38 +83,3 @@ export async function GET(request: Request) {
     }
 }
 
-// Generate realistic contribution data (52 weeks = 364 days)
-function generateContributionData() {
-    const contributions = []
-    const today = new Date()
-
-    for (let i = 364; i >= 0; i--) {
-        const date = new Date(today)
-        date.setDate(date.getDate() - i)
-
-        // Create varied activity pattern
-        const dayOfWeek = date.getDay()
-        const isWeekend = dayOfWeek === 0 || dayOfWeek === 6
-
-        // More activity on weekdays, less on weekends
-        let baseCount = isWeekend ? Math.random() * 3 : Math.random() * 10
-
-        // Add some variation
-        const count = Math.floor(baseCount)
-
-        // Determine level (0-4) based on count
-        let level = 0
-        if (count > 8) level = 4
-        else if (count > 5) level = 3
-        else if (count > 2) level = 2
-        else if (count > 0) level = 1
-
-        contributions.push({
-            date: date.toISOString().split('T')[0],
-            count,
-            level
-        })
-    }
-
-    return contributions
-}

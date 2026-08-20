@@ -16,6 +16,25 @@ interface LeetCodeStats {
   }>
 }
 
+interface LeetCodeSubmissionCount {
+  difficulty: 'All' | 'Easy' | 'Medium' | 'Hard'
+  count: number
+}
+
+interface LeetCodeGraphQLResponse {
+  data?: {
+    matchedUser?: {
+      submitStats: {
+        acSubmissionNum: LeetCodeSubmissionCount[]
+      }
+      profile?: {
+        ranking?: number
+      }
+      submissionCalendar?: string
+    }
+  }
+}
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const username = searchParams.get('username') || 'vaibhav3421'
@@ -55,7 +74,7 @@ export async function GET(request: Request) {
       throw new Error('Failed to fetch LeetCode data')
     }
 
-    const data = await response.json()
+    const data = await response.json() as LeetCodeGraphQLResponse
 
     if (!data.data?.matchedUser) {
       throw new Error('User not found')
@@ -65,10 +84,10 @@ export async function GET(request: Request) {
     const submissions = user.submitStats.acSubmissionNum
 
     // Extract stats by difficulty
-    const allProblems = submissions.find((s: any) => s.difficulty === 'All')
-    const easy = submissions.find((s: any) => s.difficulty === 'Easy')
-    const medium = submissions.find((s: any) => s.difficulty === 'Medium')
-    const hard = submissions.find((s: any) => s.difficulty === 'Hard')
+    const allProblems = submissions.find((s) => s.difficulty === 'All')
+    const easy = submissions.find((s) => s.difficulty === 'Easy')
+    const medium = submissions.find((s) => s.difficulty === 'Medium')
+    const hard = submissions.find((s) => s.difficulty === 'Hard')
 
     const totalSolved = allProblems?.count || 0
     const ranking = user.profile?.ranking || 0
